@@ -246,7 +246,7 @@ class Form extends Component {
                     borderRadius: 5
                   }}
                   placeholder="Enter Date"
-                  type="text"
+                  type="date"
                   name="dateE"
                   value={dateE}
                   onChange={this.changeHandler}
