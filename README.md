@@ -8,6 +8,6 @@ Instructions:
 
 (ii)go get go.mongodb.org/mongo-driver/mongo
 
-This will install the dependencies. Then simply run "go run main.go" to turn the backend api active.
+This will install the required packages. Then simply run "go run main.go" to turn the backend api active.
 
-3. Make sure to have yarn installed in the system. Now head back to this directory and run "yarn start" which will start the app in port 3000.
+3. Make sure to have yarn installed in the system. Now head back to this directory and run "yarn install" to get the dependecies. Finally, run "yarn start" which will start the app in port 3000.
