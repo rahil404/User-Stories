@@ -10,4 +10,4 @@ Instructions:
 
 This will install the dependencies. Then simply run "go run main.go" to turn the backend api active.
 
-3. Now head back to this directory and run "yarn start" which will start the app in port 3000.
+3. Make sure to have yarn installed in the system. Now head back to this directory and run "yarn start" which will start the app in port 3000.
