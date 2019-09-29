@@ -8,7 +8,7 @@
 2. Install MongoDB as a server in your computer: https://docs.mongodb.com/manual/administration/install-community/
 3. Install Go: https://golang.org/doc/install
 
-    Create new folder named **test-project** in the **src** folder of your **GoPath**, move the **main.go** file in the src folder. Head to this file      through command prompt and run following commands:
+    Create new folder named **test-project** in the **src** folder of your **GoPath**, move the **main.go** file in this folder. Head to this file      through command prompt and run following commands:
     1. `go get github.com/gorilla/mux`
     2. `go get go.mongodb.org/mongo-driver/mongo`
 
