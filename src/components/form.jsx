@@ -15,7 +15,8 @@ class Form extends Component {
       userForLog: "",
       limitForLog: "",
       toDateForLog: "",
-      logArr: []
+      logArr: [],
+      allUsers: []
     };
   }
 
@@ -57,34 +58,52 @@ class Form extends Component {
         _id: this.state.userid
       }
     };
-    console.log("exObj", exObj);
-    axios
-      .post("http://localhost:12345/exercise", exObj)
-      .then(response => {
-        //get username of exercise
-        axios
-          .get("http://localhost:12345/user/" + this.state.userid)
-          .then(response2 => {
-            console.log("Response 2 username", response2.data.username);
-            response.data.description = this.state.description;
-            response.data.duration = this.state.duration;
-            response.data.date = dateEE;
-            response.data.userID = this.state.userid;
-            response.data.username = response2.data.username;
-            console.log("E submit resp", response.data);
+    //console.log("exObj", exObj);
+    //check if user exists
+    fetch("http://localhost:12345/users")
+      .then(res1 => res1.json())
+      .then(response1 => {
+        this.setState({ allUsers: response1 });
 
-            this.props.setExerciseObj(response.data);
-            this.props.history.push({
-              pathname: "/api/exercise/add/",
-              state: response.data
+        let found = this.state.allUsers.find(
+          user => user._id === this.state.userid
+        );
+        if (found == undefined) {
+          alert("User not found");
+        } else {
+          //create exercise
+          axios
+            .post("http://localhost:12345/exercise", exObj)
+            .then(response => {
+              //get username of exercise
+              axios
+                .get("http://localhost:12345/user/" + this.state.userid)
+                .then(response2 => {
+                  //console.log("Response 2 username", response2.data.username);
+                  response.data.description = this.state.description;
+                  response.data.duration = this.state.duration;
+                  response.data.date = dateEE;
+                  response.data.userID = this.state.userid;
+                  response.data.username = response2.data.username;
+                  //console.log("E submit resp", response.data);
+
+                  this.props.setExerciseObj(response.data);
+                  this.props.history.push({
+                    pathname: "/api/exercise/add/",
+                    state: response.data
+                  });
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            })
+            .catch(error => {
+              console.log(error);
             });
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        }
       })
-      .catch(error => {
-        console.log(error);
+      .catch(err1 => {
+        console.log(err1);
       });
   };
 
